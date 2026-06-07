@@ -1,491 +1,460 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comparativo de Celulares R$ 1.000–2.000 (2026)</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativo de Celulares 2026</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent:#6366f1; --accent-lt:#eef2ff;
+  --dark:#0f172a; --mid:#334155; --muted:#94a3b8;
+  --border:#e2e8f0; --bg:#f1f5f9; --white:#fff;
+  --sidebar:256px;
+}
+html { scroll-behavior:smooth; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--dark); min-height:100vh; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #f0f2f5;
-      color: #1a1a2e;
-      padding: 32px 16px;
-    }
+/* HEADER */
+.site-header { background:var(--dark); color:white; padding:22px 32px; display:flex; align-items:center; gap:20px; }
+.header-text h1 { font-size:1.4rem; font-weight:800; letter-spacing:-.5px; }
+.header-text p { color:var(--muted); font-size:.82rem; margin-top:3px; }
+.header-text { flex:1; }
+.header-stats { display:flex; gap:20px; }
+.stat-num { font-size:1.5rem; font-weight:800; color:white; line-height:1; }
+.stat-lbl { font-size:.63rem; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; margin-top:2px; }
 
-    h1 {
-      text-align: center;
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-      color: #1a1a2e;
-    }
+/* PAGE BODY */
+.page-body { display:flex; align-items:flex-start; }
 
-    .subtitle {
-      text-align: center;
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 32px;
-    }
+/* SIDEBAR */
+.sidebar { width:var(--sidebar); flex-shrink:0; background:var(--white); border-right:1px solid var(--border); position:sticky; top:0; height:100vh; overflow-y:auto; display:flex; flex-direction:column; }
+.sb-section { padding:18px 16px 14px; border-bottom:1px solid var(--border); }
+.sb-section:last-child { border-bottom:none; }
+.sb-title { font-size:.62rem; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-bottom:10px; }
 
-    h2 {
-      font-size: 1.1rem;
-      margin-bottom: 12px;
-      color: #333;
-      padding-left: 4px;
-      border-left: 4px solid #4f46e5;
-      padding-left: 10px;
-    }
+/* BRAND CHIPS */
+.brand-chips { display:flex; flex-wrap:wrap; gap:5px; }
+.brand-chip {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 11px; border-radius:999px;
+  border:2px solid var(--border); background:white;
+  cursor:pointer; font-size:.76rem; font-weight:700; color:var(--mid);
+  transition:all .14s; user-select:none;
+}
+.brand-chip:hover { border-color:#c7d2fe; color:var(--accent); }
+.brand-chip.on { border-color:var(--dark); background:var(--dark); color:white; }
+.chip-count {
+  background:#f1f5f9; color:var(--muted);
+  font-size:.62rem; font-weight:800; padding:1px 6px; border-radius:999px;
+  transition:all .14s;
+}
+.brand-chip.on .chip-count { background:rgba(255,255,255,.18); color:rgba(255,255,255,.8); }
 
-    .table-wrapper {
-      overflow-x: auto;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      margin-bottom: 36px;
-    }
+/* FEATURE FILTERS */
+.filter-item {
+  display:flex; align-items:center; gap:9px;
+  padding:7px 9px; border-radius:9px; cursor:pointer;
+  font-size:.8rem; font-weight:600; color:var(--mid);
+  margin-bottom:2px; transition:background .12s,color .12s;
+  user-select:none; border:1.5px solid transparent;
+}
+.filter-item:hover { background:#f8fafc; }
+.filter-item.on { background:var(--accent-lt); color:var(--accent); border-color:#c7d2fe; }
+.chk { width:17px; height:17px; flex-shrink:0; border-radius:5px; border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:.6rem; color:white; transition:all .12s; }
+.filter-item.on .chk { background:var(--accent); border-color:var(--accent); }
+.filter-item.on .chk::after { content:'✓'; }
+.fi-icon { font-size:.95rem; }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 900px;
-    }
+/* SORT */
+.sort-select { width:100%; padding:8px 30px 8px 10px; border-radius:9px; border:1.5px solid var(--border); font-size:.8rem; font-weight:600; color:var(--dark); background:white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 10px center; appearance:none; cursor:pointer; }
 
-    thead th {
-      background: #4f46e5;
-      color: white;
-      padding: 14px 12px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-align: center;
-      white-space: nowrap;
-    }
+/* COUNT + CLEAR */
+.sb-count { padding:12px 16px; font-size:.78rem; font-weight:700; color:var(--mid); display:flex; align-items:center; gap:8px; }
+.count-badge { background:var(--accent); color:white; font-size:.68rem; font-weight:800; padding:2px 9px; border-radius:999px; }
+.clear-btn { display:none; margin:0 16px 14px; padding:7px; border-radius:9px; border:1.5px solid #fecaca; background:#fff1f2; color:#dc2626; font-size:.74rem; font-weight:700; cursor:pointer; text-align:center; transition:all .12s; }
+.clear-btn:hover { background:#fee2e2; }
+.clear-btn.visible { display:block; }
 
-    thead th:first-child {
-      text-align: left;
-      border-radius: 12px 0 0 0;
-    }
+/* MAIN */
+.main-content { flex:1; min-width:0; padding:22px 26px; }
 
-    thead th:last-child {
-      border-radius: 0 12px 0 0;
-    }
+/* CARDS GRID */
+.cards-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(252px,1fr)); gap:16px; margin-bottom:8px; }
 
-    tbody tr:nth-child(even) { background: #f8f9ff; }
-    tbody tr:hover { background: #eef0ff; }
+/* CARD */
+.card { background:var(--white); border-radius:17px; border:1px solid var(--border); overflow:hidden; display:flex; flex-direction:column; transition:transform .2s,box-shadow .2s; position:relative; }
+.card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.10); }
+.card.hidden { display:none; }
+.card-strip { height:4px; width:100%; }
+.card-badge { position:absolute; top:11px; right:11px; padding:3px 8px; border-radius:999px; font-size:.6rem; font-weight:800; text-transform:uppercase; letter-spacing:.04em; z-index:2; max-width:135px; text-align:center; line-height:1.4; }
+.badge-gold  { background:#fef3c7; color:#92400e; }
+.badge-blue  { background:#dbeafe; color:#1e40af; }
+.badge-green { background:#dcfce7; color:#166534; }
 
-    tbody td {
-      padding: 11px 12px;
-      font-size: 0.84rem;
-      border-bottom: 1px solid #e8eaf0;
-      text-align: center;
-      vertical-align: middle;
-    }
+.card-img { background:#f8fafc; display:flex; align-items:center; justify-content:center; height:172px; padding:12px; }
+.card-img img { max-height:150px; max-width:100px; object-fit:contain; filter:drop-shadow(0 4px 10px rgba(0,0,0,.11)); transition:transform .3s; }
+.card:hover .card-img img { transform:scale(1.07); }
+.img-fb { width:76px; height:132px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; font-weight:900; color:white; letter-spacing:-1px; }
 
-    tbody td:first-child {
-      text-align: left;
-      font-weight: 600;
-      color: #333;
-      white-space: nowrap;
-      background: inherit;
-    }
+.card-info { padding:13px 15px 0; display:flex; flex-direction:column; gap:4px; flex:1; }
+.card-brand { font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+.card-name { font-size:.92rem; font-weight:800; color:var(--dark); line-height:1.2; }
+.card-price { font-size:1.18rem; font-weight:800; color:var(--accent); margin-top:1px; }
+.card-price sub { font-size:.62rem; color:var(--muted); font-weight:500; vertical-align:middle; }
+.stars-row { display:flex; align-items:center; gap:5px; margin:1px 0 4px; }
+.stars { color:#f59e0b; font-size:.82rem; letter-spacing:.5px; }
+.stars-dim { opacity:.2; }
+.rating-val { font-size:.73rem; font-weight:700; color:var(--muted); }
 
-    .highlight-row td {
-      background: #fffbeb !important;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
+.card-specs { border-top:1px solid #f1f5f9; padding-top:9px; display:flex; flex-direction:column; gap:5px; }
+.spec-row { display:flex; align-items:flex-start; justify-content:space-between; font-size:.72rem; gap:5px; }
+.spec-key { color:var(--muted); display:flex; align-items:center; gap:4px; flex-shrink:0; }
+.spec-key-icon { font-size:.78rem; }
+.spec-v { font-weight:700; color:var(--mid); text-align:right; }
+.spec-v.ok  { color:#16a34a; }
+.spec-v.bad { color:#dc2626; }
 
-    .check { color: #16a34a; font-size: 1.1rem; }
-    .cross  { color: #dc2626; font-size: 1.1rem; }
+/* BUY BUTTONS */
+.card-actions { padding:11px 15px 15px; display:flex; gap:5px; flex-wrap:wrap; }
+.btn { flex:1; min-width:0; padding:8px 5px; border-radius:8px; font-size:.66rem; font-weight:700; text-align:center; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:3px; cursor:pointer; transition:filter .15s,transform .1s; white-space:nowrap; border:none; }
+.btn:hover { filter:brightness(.88); transform:scale(1.02); }
+.btn-bup  { background:#f97316; color:white; }
+.btn-ml   { background:#ffe600; color:#1a1a2e; }
+.btn-loja { background:var(--dark); color:white; }
 
-    .stars { color: #f59e0b; letter-spacing: 1px; font-size: 1rem; }
-    .stars-empty { color: #d1d5db; }
+/* NO RESULTS */
+#noResults { display:none; text-align:center; padding:60px 24px; color:var(--muted); font-size:.9rem; }
 
-    .avg-row td {
-      background: #eef2ff !important;
-      font-weight: 700;
-      font-size: 0.92rem;
-      border-top: 2px solid #4f46e5;
-    }
+/* TABLE */
+#tableSection { margin-top:30px; }
+.table-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.table-header h2 { font-size:1rem; font-weight:800; }
+.tbl-wrap { overflow-x:auto; background:var(--white); border-radius:15px; border:1px solid var(--border); box-shadow:0 2px 10px rgba(0,0,0,.05); }
+table { width:100%; border-collapse:collapse; }
+thead th { background:var(--dark); color:white; padding:11px 9px; font-size:.7rem; font-weight:700; text-align:center; white-space:nowrap; position:sticky; top:0; min-width:108px; }
+thead th:first-child { text-align:left; min-width:140px; }
+tbody td { padding:8px 9px; font-size:.74rem; border-bottom:1px solid #f1f5f9; text-align:center; vertical-align:middle; }
+tbody td:first-child { text-align:left; color:var(--muted); font-weight:600; white-space:nowrap; }
+tbody tr:hover { background:#fafbfc; }
+.t-ok { color:#16a34a; }
+.t-bad { color:#dc2626; }
+.t-pill { display:inline-block; padding:2px 7px; border-radius:999px; font-size:.65rem; font-weight:700; }
+.t-green { background:#dcfce7; color:#166534; }
+.t-red   { background:#fee2e2; color:#991b1b; }
+.score-row td:first-child { font-size:.65rem; padding-left:20px; color:#b0bec5; }
+.score-row td { background:#fafbfd; }
+.avg-row td { background:#eef2ff !important; font-weight:800; border-top:2px solid var(--accent); }
 
-    .total-row td {
-      background: #1a1a2e !important;
-      color: white !important;
-      font-weight: 700;
-      font-size: 0.92rem;
-    }
+footer { text-align:center; font-size:.67rem; color:var(--muted); padding:22px; border-top:1px solid var(--border); background:var(--white); margin-top:36px; }
 
-    .badge {
-      display: inline-block;
-      background: #dcfce7;
-      color: #15803d;
-      border-radius: 999px;
-      padding: 2px 10px;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .badge-blue {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    .note {
-      text-align: center;
-      color: #888;
-      font-size: 0.78rem;
-      margin-top: -24px;
-      margin-bottom: 36px;
-    }
-
-    footer {
-      text-align: center;
-      color: #aaa;
-      font-size: 0.75rem;
-      margin-top: 16px;
-    }
-  </style>
+@media(max-width:800px) {
+  .page-body { flex-direction:column; }
+  .sidebar { width:100%; height:auto; position:static; }
+  .main-content { padding:14px; }
+  .cards-grid { grid-template-columns:1fr 1fr; gap:11px; }
+}
+@media(max-width:420px) { .cards-grid { grid-template-columns:1fr; } }
+</style>
 </head>
 <body>
 
-<h1>📱 Comparativo de Celulares 2026</h1>
-<p class="subtitle">Faixa R$ 1.000 – R$ 2.000 · Melhor custo-benefício</p>
+<header class="site-header">
+  <div class="header-text">
+    <h1>📱 Comparativo de Celulares 2026</h1>
+    <p>Todos os modelos com NFC · Faixa R$ 1.000 – R$ 2.500 · Atualizado junho/2026</p>
+  </div>
+  <div class="header-stats">
+    <div class="stat"><div class="stat-num" id="hCount">11</div><div class="stat-lbl">Modelos</div></div>
+    <div class="stat"><div class="stat-num">R$1K</div><div class="stat-lbl">A partir de</div></div>
+    <div class="stat"><div class="stat-num">R$2,5K</div><div class="stat-lbl">Até</div></div>
+  </div>
+</header>
 
-<!-- TABELA 1: ESPECIFICAÇÕES -->
-<h2>📋 Especificações Completas</h2>
-<div class="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>Atributo</th>
-        <th>Galaxy A36</th>
-        <th>Edge 60 Neo</th>
-        <th>Edge 60 Fusion</th>
-        <th>POCO X7</th>
-        <th>Galaxy A56</th>
-        <th>Redmi Note 14 Pro</th>
-        <th>Realme 14 5G</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Preço aprox.</td>
-        <td>~R$ 1.400</td>
-        <td>~R$ 1.500</td>
-        <td>~R$ 1.800</td>
-        <td>~R$ 1.670</td>
-        <td>~R$ 1.950</td>
-        <td>~R$ 1.950</td>
-        <td>~R$ 1.850</td>
-      </tr>
-      <tr>
-        <td>Tela</td>
-        <td>AMOLED 6,7" 120 Hz</td>
-        <td>P-OLED 6,36" 120 Hz</td>
-        <td>pOLED 6,7" 120 Hz</td>
-        <td>AMOLED 1,5K 6,67" 120 Hz</td>
-        <td>AMOLED 6,7" 120 Hz</td>
-        <td>AMOLED 6,67" 120 Hz</td>
-        <td>AMOLED 6,67" 120 Hz</td>
-      </tr>
-      <tr>
-        <td>Processador</td>
-        <td>Snapdragon 6 Gen 3</td>
-        <td>Dimensity 7300</td>
-        <td>Dimensity 7300</td>
-        <td>Snapdragon 7s Gen 3</td>
-        <td>Exynos 1580</td>
-        <td>Dimensity 7300 Ultra</td>
-        <td>Snapdragon 6 Gen 4</td>
-      </tr>
-      <tr>
-        <td>Câmera principal</td>
-        <td>50 MP</td>
-        <td>50 MP</td>
-        <td>50 MP + OIS</td>
-        <td>50 MP</td>
-        <td>50 MP + OIS</td>
-        <td><strong>200 MP</strong> + OIS</td>
-        <td>50 MP</td>
-      </tr>
-      <tr>
-        <td>Câmera frontal</td>
-        <td>12 MP</td>
-        <td>32 MP</td>
-        <td>32 MP</td>
-        <td>20 MP</td>
-        <td>12 MP</td>
-        <td>20 MP</td>
-        <td>16 MP</td>
-      </tr>
-      <tr>
-        <td>Gravação 4K</td>
-        <td><span class="cross">✗</span></td>
-        <td><span class="cross">✗</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="cross">✗</span></td>
-      </tr>
-      <tr>
-        <td>Bateria</td>
-        <td>5.000 mAh</td>
-        <td>5.000 mAh</td>
-        <td>5.000 mAh</td>
-        <td>5.110 mAh</td>
-        <td>5.000 mAh</td>
-        <td>5.110 mAh</td>
-        <td><strong>6.000 mAh</strong></td>
-      </tr>
-      <tr>
-        <td>Carregamento rápido</td>
-        <td>45W</td>
-        <td>68W</td>
-        <td>68W</td>
-        <td>45W</td>
-        <td>45W</td>
-        <td>45W</td>
-        <td>45W</td>
-      </tr>
-      <tr>
-        <td>NFC</td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-      </tr>
-      <tr>
-        <td>Resistência à água</td>
-        <td>IP67</td>
-        <td>IP68 + MIL-810H</td>
-        <td><strong>IP69</strong></td>
-        <td>IP68</td>
-        <td>IP67</td>
-        <td>IP68</td>
-        <td>IP68</td>
-      </tr>
-      <tr>
-        <td>Peso</td>
-        <td>195g</td>
-        <td><strong>174,5g</strong></td>
-        <td>178g</td>
-        <td>190g</td>
-        <td>198g</td>
-        <td>190g</td>
-        <td>196g</td>
-      </tr>
-      <tr>
-        <td>Desbloqueio facial</td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
-      </tr>
-      <tr>
-        <td>Biometria na tela</td>
-        <td><span class="badge">✓ óptico</span></td>
-        <td><span class="badge" style="background:#fee2e2;color:#b91c1c;">✗ lateral</span></td>
-        <td><span class="badge">✓ óptico</span></td>
-        <td><span class="badge">✓ óptico</span></td>
-        <td><span class="badge">✓ óptico</span></td>
-        <td><span class="badge" style="background:#fee2e2;color:#b91c1c;">✗ lateral</span></td>
-        <td><span class="badge" style="background:#fee2e2;color:#b91c1c;">✗ lateral</span></td>
-      </tr>
-      <tr>
-        <td>Atualizações garantidas</td>
-        <td><span class="badge">4 anos</span></td>
-        <td>2 anos</td>
-        <td>2 anos</td>
-        <td>2 anos</td>
-        <td><span class="badge">4 anos</span></td>
-        <td>2 anos</td>
-        <td>2 anos</td>
-      </tr>
-      <tr>
-        <td>Melhor para</td>
-        <td><span class="badge badge-blue">Equilíbrio geral</span></td>
-        <td><span class="badge badge-blue">Dia a dia compacto</span></td>
-        <td><span class="badge badge-blue">Câmera e desempenho</span></td>
-        <td><span class="badge badge-blue">Hardware bruto</span></td>
-        <td><span class="badge badge-blue">Melhor da faixa</span></td>
-        <td><span class="badge badge-blue">Fotografia</span></td>
-        <td><span class="badge badge-blue">Autonomia</span></td>
-      </tr>
-      <tr class="avg-row">
-        <td>⭐ Média geral</td>
-        <td>3,5 ⭐</td>
-        <td>3,9 ⭐</td>
-        <td>4,2 ⭐</td>
-        <td>3,7 ⭐</td>
-        <td>3,5 ⭐</td>
-        <td>3,4 ⭐</td>
-        <td>3,0 ⭐</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="page-body">
+<aside class="sidebar">
+
+  <div class="sb-section">
+    <div class="sb-title">Marca</div>
+    <div class="brand-chips" id="brandChips">
+      <div class="brand-chip" data-brand="samsung">Samsung <span class="chip-count">4</span></div>
+      <div class="brand-chip" data-brand="motorola">Motorola <span class="chip-count">2</span></div>
+      <div class="brand-chip" data-brand="xiaomi">Xiaomi/POCO <span class="chip-count">3</span></div>
+      <div class="brand-chip" data-brand="realme">Realme <span class="chip-count">2</span></div>
+    </div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-title">Recursos</div>
+    <div class="filter-item" data-feat="ip68"><div class="chk"></div><span class="fi-icon">💧</span> IP68+</div>
+    <div class="filter-item" data-feat="bio"><div class="chk"></div><span class="fi-icon">👆</span> Biometria na tela</div>
+    <div class="filter-item" data-feat="4anos"><div class="chk"></div><span class="fi-icon">🔄</span> 4+ anos suporte</div>
+    <div class="filter-item" data-feat="4k"><div class="chk"></div><span class="fi-icon">🎬</span> Gravação 4K</div>
+    <div class="filter-item" data-feat="charge65"><div class="chk"></div><span class="fi-icon">⚡</span> Carga 65W+</div>
+    <div class="filter-item" data-feat="ois"><div class="chk"></div><span class="fi-icon">📸</span> OIS (estabilização)</div>
+    <div class="filter-item" data-feat="ram12"><div class="chk"></div><span class="fi-icon">🐏</span> RAM 12GB+</div>
+    <div class="filter-item" data-feat="sdcard"><div class="chk"></div><span class="fi-icon">💾</span> Slot microSD</div>
+    <div class="filter-item" data-feat="stor256"><div class="chk"></div><span class="fi-icon">💿</span> Armazenamento 256GB+</div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-title">Ordenar</div>
+    <select class="sort-select" id="sortSel">
+      <option value="">Padrão</option>
+      <option value="pa">Menor preço</option>
+      <option value="pd">Maior preço</option>
+      <option value="ra">Maior nota</option>
+    </select>
+  </div>
+
+  <div class="sb-count">Exibindo <span class="count-badge" id="ctCount">11</span> modelo(s)</div>
+  <button class="clear-btn" id="clearBtn">✕ Limpar todos os filtros</button>
+
+</aside>
+
+<main class="main-content">
+  <div class="cards-grid" id="grid"></div>
+  <div id="noResults">😕 Nenhum aparelho encontrado com esses filtros.</div>
+  <section id="tableSection">
+    <div class="table-header"><h2>📋 Tabela comparativa completa</h2></div>
+    <div class="tbl-wrap"><table id="tbl"></table></div>
+  </section>
+</main>
 </div>
 
-<!-- TABELA 2: NOTAS -->
-<h2>⭐ Notas por Atributo (1 a 5 — maior = melhor na categoria)</h2>
-<div class="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>Atributo</th>
-        <th>Galaxy A36</th>
-        <th>Edge 60 Neo</th>
-        <th>Edge 60 Fusion</th>
-        <th>POCO X7</th>
-        <th>Galaxy A56</th>
-        <th>Redmi Note 14 Pro</th>
-        <th>Realme 14 5G</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Preço</td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-      </tr>
-      <tr>
-        <td>Tela</td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-      </tr>
-      <tr>
-        <td>Processador</td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-      </tr>
-      <tr>
-        <td>Câmera principal</td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-      </tr>
-      <tr>
-        <td>Câmera frontal</td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-      </tr>
-      <tr>
-        <td>Bateria</td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-      </tr>
-      <tr>
-        <td>Carregamento rápido</td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-      </tr>
-      <tr>
-        <td>Resistência à água</td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-        <td><span class="stars">★★★★</span><span class="stars-empty">★</span></td>
-      </tr>
-      <tr>
-        <td>Peso</td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★★</span><span class="stars-empty">★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-      </tr>
-      <tr>
-        <td>Biometria na tela</td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-      </tr>
-      <tr>
-        <td>Atualizações</td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-        <td><span class="stars">★★</span><span class="stars-empty">★★★</span></td>
-      </tr>
-      <tr class="total-row">
-        <td>Total /55</td>
-        <td>38</td>
-        <td>43</td>
-        <td>46</td>
-        <td>41</td>
-        <td>38</td>
-        <td>37</td>
-        <td>33</td>
-      </tr>
-      <tr class="avg-row">
-        <td>Média geral</td>
-        <td>3,5 ⭐</td>
-        <td>3,9 ⭐</td>
-        <td>4,2 ⭐</td>
-        <td>3,7 ⭐</td>
-        <td>3,5 ⭐</td>
-        <td>3,4 ⭐</td>
-        <td>3,0 ⭐</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<footer>Preços aproximados via Buscapé, sujeitos a variação. Notas por atributo (1–5 ★), peso igual. Gerado com Claude · Anthropic · Junho 2026</footer>
 
-<p class="note">⚠️ Ranking com peso igual para todos os atributos. Preços aproximados, sujeitos a variação. Pesquisa: junho/2026.</p>
+<script>
+const D = [
+  { id:'a36',   brandKey:'samsung',  brand:'Samsung',      model:'Galaxy A36 5G',        price:1400, rating:3.5,
+    color:'#1428a0', badge:'Menor preço',      bType:'badge-green', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a36-5g.jpg',
+    links:{ bup:'https://www.buscape.com.br/celular/celular-samsung-galaxy-a36-5g-256gb-8-gb', ml:'https://www.mercadolivre.com.br/smartphone-samsung-galaxy-a36-5g-256gb-8gb-ram/p/MLB47111905', loja:'https://www.samsung.com/br/smartphones/galaxy-a/galaxy-a36-5g-awesome-black-256gb-sm-a366ezkgzto/' },
+    feats:{ ip68:false, bio:true, '4anos':true, '4k':false, charge65:false, ois:false, ram12:false, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50 MP'],['🤳','Selfie','12 MP'],['🔋','Bateria','5.000 mAh / 45W'],['💧','Resistência','IP67'],['⚖️','Peso','195g'],['🔄','Suporte','4 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✗',false]],
+    sc:{pr:5,te:3,ch:3,cp:3,cf:2,ba:3,ca:3,ag:3,pe:3,bi:5,at:5}
+  },
+  { id:'neo',   brandKey:'motorola', brand:'Motorola',     model:'Edge 60 Neo',          price:1500, rating:3.9,
+    color:'#e2000f', badge:'Mais leve',        bType:'badge-green', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/motorola-edge-60-neo.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/motorola+edge+60+neo', ml:'https://www.mercadolivre.com.br/smartphone-motorola-edge-60-neo-5g-256gb-24gb-12gb-ram-12gb-ram-boost-50mp-sony-camera-moto-ai-e-tela-15k-super-hd-cinza/p/MLB58684601', loja:'https://www.motorola.com.br/smartphone-motorola-edge-60-neo-5g-256gb/p' },
+    feats:{ ip68:true, bio:false, '4anos':false, '4k':false, charge65:true, ois:false, ram12:true, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50 MP Sony'],['🤳','Selfie','32 MP'],['🔋','Bateria','5.000 mAh / 68W'],['💧','Resistência','IP68 + MIL-810H'],['⚖️','Peso','174,5g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✗',false],['🎬','4K','✗',false]],
+    sc:{pr:5,te:4,ch:4,cp:3,cf:5,ba:3,ca:5,ag:5,pe:5,bi:2,at:2}
+  },
+  { id:'poco',  brandKey:'xiaomi',   brand:'Xiaomi / POCO', model:'POCO X7',             price:1670, rating:3.7,
+    color:'#ff6900', badge:'Tela 1.5K',        bType:'badge-blue', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x7.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/poco+x7', ml:'https://lista.mercadolivre.com.br/poco-x7', loja:'https://www.mi.com/br/' },
+    feats:{ ip68:true, bio:true, '4anos':false, '4k':true, charge65:false, ois:false, ram12:false, sdcard:true, stor256:true },
+    specs:[['📷','Câmera','50 MP'],['🤳','Selfie','20 MP'],['🔋','Bateria','5.110 mAh / 45W'],['💧','Resistência','IP68'],['⚖️','Peso','190g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:4,te:5,ch:4,cp:3,cf:4,ba:4,ca:3,ag:4,pe:3,bi:5,at:2}
+  },
+  { id:'fusion',brandKey:'motorola', brand:'Motorola',     model:'Edge 60 Fusion',       price:1800, rating:4.2,
+    color:'#e2000f', badge:'🏆 Melhor nota',   bType:'badge-gold', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/motorola-edge-60-fusion.jpg',
+    links:{ bup:'https://www.buscape.com.br/celular/celular-motorola-edge-60-fusion-5g-256gb-8-gb', ml:'https://lista.mercadolivre.com.br/motorola-edge-60-fusion', loja:'https://www.motorola.com.br/smartphone-motorola-edge-60-fusion-5g/p' },
+    feats:{ ip68:true, bio:true, '4anos':false, '4k':true, charge65:true, ois:true, ram12:false, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50 MP Sony OIS'],['🤳','Selfie','32 MP'],['🔋','Bateria','5.000 mAh / 68W'],['💧','Resistência','IP69'],['⚖️','Peso','178g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:3,te:5,ch:4,cp:4,cf:5,ba:3,ca:5,ag:5,pe:5,bi:5,at:2}
+  },
+  { id:'realme',brandKey:'realme',   brand:'Realme',       model:'Realme 14 5G',         price:1850, rating:3.0,
+    color:'#f5a623', badge:'6.000 mAh',        bType:'badge-blue', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/realme-14-5g.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/realme+14+5g', ml:'https://lista.mercadolivre.com.br/realme-14-5g', loja:'https://www.realmestore.com.br/produtos/realme-14-5g-5g-dual-sim-512gb-12b-ram-com-nfc/' },
+    feats:{ ip68:true, bio:false, '4anos':false, '4k':false, charge65:false, ois:false, ram12:true, sdcard:true, stor256:true },
+    specs:[['📷','Câmera','50 MP'],['🤳','Selfie','16 MP'],['🔋','Bateria','6.000 mAh / 45W'],['💧','Resistência','IP68'],['⚖️','Peso','196g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✗',false],['🎬','4K','✗',false]],
+    sc:{pr:3,te:3,ch:3,cp:3,cf:3,ba:5,ca:3,ag:4,pe:2,bi:2,at:2}
+  },
+  { id:'m55',   brandKey:'samsung',  brand:'Samsung',      model:'Galaxy M55 5G',        price:1900, rating:3.5,
+    color:'#1428a0', badge:'🌐 Excl. Online',  bType:'badge-blue', excl:true,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-m55-5g.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/samsung+galaxy+m55', ml:'https://lista.mercadolivre.com.br/samsung-galaxy-m55', loja:'https://shop.samsung.com/br/galaxy-m55/p' },
+    feats:{ ip68:false, bio:true, '4anos':true, '4k':true, charge65:false, ois:false, ram12:false, sdcard:true, stor256:false },
+    specs:[['📷','Câmera','50 MP'],['🤳','Selfie','50 MP ★'],['🔋','Bateria','5.000 mAh / 45W'],['💧','Resistência','Sem IP'],['⚖️','Peso','180g'],['🔄','Suporte','4 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:2,te:4,ch:4,cp:3,cf:5,ba:3,ca:3,ag:1,pe:4,bi:5,at:5}
+  },
+  { id:'a56',   brandKey:'samsung',  brand:'Samsung',      model:'Galaxy A56 5G',        price:1950, rating:3.5,
+    color:'#1428a0', badge:'Mais completo',     bType:'badge-green', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a56.jpg',
+    links:{ bup:'https://www.buscape.com.br/celular/celular-samsung-galaxy-a56-5g-256gb-8-gb', ml:'https://lista.mercadolivre.com.br/samsung-galaxy-a56', loja:'https://www.samsung.com/br/smartphones/galaxy-a/' },
+    feats:{ ip68:false, bio:true, '4anos':true, '4k':true, charge65:false, ois:true, ram12:false, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50 MP OIS'],['🤳','Selfie','12 MP'],['🔋','Bateria','5.000 mAh / 45W'],['💧','Resistência','IP67'],['⚖️','Peso','198g'],['🔄','Suporte','4 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:2,te:4,ch:5,cp:4,cf:2,ba:3,ca:3,ag:3,pe:2,bi:5,at:5}
+  },
+  { id:'redmi', brandKey:'xiaomi',   brand:'Xiaomi',       model:'Redmi Note 14 Pro 5G', price:1950, rating:3.4,
+    color:'#ff6900', badge:'200 MP',             bType:'badge-gold', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-14-pro-5g.jpg',
+    links:{ bup:'https://www.buscape.com.br/celular/celular-xiaomi-redmi-note-14-pro-5g-256gb-8-gb', ml:'https://www.mercadolivre.com.br/xiaomi-redmi-note-14-pro-5g-preto-256-gb-8-ram-200-mpx/p/MLB45748930', loja:'https://www.mi.com/br/product/redmi-note-14-pro-5g/' },
+    feats:{ ip68:true, bio:false, '4anos':false, '4k':true, charge65:false, ois:true, ram12:false, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','200 MP OIS'],['🤳','Selfie','20 MP'],['🔋','Bateria','5.110 mAh / 45W'],['💧','Resistência','IP68'],['⚖️','Peso','190g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✗',false],['🎬','4K','✓',true]],
+    sc:{pr:2,te:3,ch:4,cp:5,cf:4,ba:4,ca:3,ag:4,pe:3,bi:2,at:2}
+  },
+  { id:'pocox8',brandKey:'xiaomi',   brand:'Xiaomi / POCO', model:'POCO X8 Pro',         price:2300, rating:4.2,
+    color:'#ff6900', badge:'⚡ 100W · 6500mAh', bType:'badge-gold', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/xiaomi-poco-x8-pro.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/xiaomi+poco+x8+pro', ml:'https://lista.mercadolivre.com.br/poco-x8-pro', loja:'https://www.mi.com/br/product/poco-x8-pro/' },
+    feats:{ ip68:true, bio:true, '4anos':false, '4k':true, charge65:true, ois:true, ram12:true, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50MP Sony OIS'],['🤳','Selfie','20 MP'],['🔋','Bateria','6.500 mAh / 100W'],['💧','Resistência','IP68 + IP69K'],['⚖️','Peso','209g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:5,te:4,ch:5,cp:4,cf:3,ba:5,ca:5,ag:4,pe:2,bi:4,at:2}
+  },
+  { id:'rm14pp',brandKey:'realme',   brand:'Realme',       model:'Realme 14 Pro Plus 5G',price:2374, rating:4.3,
+    color:'#f5a623', badge:'🔭 Periscópio Sony', bType:'badge-gold', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/realme-14-pro-plus-5g.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/realme+14+pro+plus', ml:'https://lista.mercadolivre.com.br/realme-14-pro-plus', loja:'https://www.realmestore.com.br/produtos/realme-14-pro-5g-dual-sim-512gb-12gb-ram-com-nfc-tela-curva-677/' },
+    feats:{ ip68:true, bio:true, '4anos':false, '4k':true, charge65:true, ois:true, ram12:true, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50MP Sony OIS + 50MP Periscópio'],['🤳','Selfie','32 MP'],['🔋','Bateria','6.000 mAh / 80W'],['💧','Resistência','IP69 + IP68 + IP66'],['⚖️','Peso','178g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:4,te:4,ch:4,cp:5,cf:4,ba:5,ca:4,ag:5,pe:4,bi:4,at:2}
+  },
+  { id:'s25fe', brandKey:'samsung',  brand:'Samsung',      model:'Galaxy S25 FE',        price:2500, rating:3.9,
+    color:'#1428a0', badge:'7 anos suporte ★',  bType:'badge-gold', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s25-fe.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/samsung+galaxy+s25+fe', ml:'https://www.mercadolivre.com.br/celular-samsung-galaxy-s25-fe-5g-128gb-8gb-ram-cmera-tripla-de-50128-tela-grande-de-67-jetblack/p/MLB61692896', loja:'https://www.samsung.com/br/smartphones/galaxy-s/galaxy-s25-fe-navy-128gb-sm-s731bdbjzto/' },
+    feats:{ ip68:true, bio:true, '4anos':true, '4k':true, charge65:false, ois:false, ram12:false, sdcard:false, stor256:false },
+    specs:[['📷','Câmera','50MP + 12MP UW + 8MP 3x tele'],['🤳','Selfie','12 MP'],['🔋','Bateria','4.900 mAh / 45W'],['💧','Resistência','IP68'],['⚖️','Peso','190g'],['🔄','Suporte','7 anos ★★'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:3,te:4,ch:5,cp:4,cf:3,ba:2,ca:2,ag:3,pe:3,bi:4,at:5}
+  }
+];
 
-<footer>Gerado com Claude · Anthropic · Junho 2026</footer>
+const PROC={a36:'SD 6 Gen 3',neo:'Dimensity 7300',poco:'SD 7s Gen 3',fusion:'Dimensity 7300',realme:'SD 6 Gen 4',m55:'SD 7 Gen 1',a56:'Exynos 1580',redmi:'D7300 Ultra',pocox8:'D8500 Ultra',rm14pp:'SD 7s Gen 3',s25fe:'Exynos 2400'};
+const RAM={a36:'8 GB',neo:'12 GB',poco:'8 GB',fusion:'8 GB',realme:'12 GB',m55:'8 GB',a56:'8 GB',redmi:'8 GB',pocox8:'12 GB',rm14pp:'12 GB',s25fe:'8 GB'};
+const STOR={a36:'256 GB',neo:'256 GB',poco:'256 GB',fusion:'256 GB',realme:'256 GB',m55:'128 GB',a56:'256 GB',redmi:'256 GB',pocox8:'256 GB',rm14pp:'256 GB',s25fe:'128 GB'};
 
+let activeBrands=new Set(), activeFeats=new Set(), sort='';
+
+function anyActive(){ return activeBrands.size>0||activeFeats.size>0; }
+
+function stars(r){
+  let s='';
+  for(let i=1;i<=5;i++) s+=`<span class="${i<=r?'':'stars-dim'}">★</span>`;
+  return s;
+}
+
+function card(p){
+  const rows=p.specs.map(([ic,k,v,ok])=>`
+    <div class="spec-row">
+      <span class="spec-key"><span class="spec-key-icon">${ic}</span>${k}</span>
+      <span class="spec-v${ok===true?' ok':ok===false?' bad':''}">${v}</span>
+    </div>`).join('');
+  return `
+<div class="card" data-id="${p.id}" data-price="${p.price}" data-rating="${p.rating}" data-brand="${p.brandKey}"
+  ${Object.keys(p.feats).map(f=>`data-${f}="${p.feats[f]}"`).join(' ')}>
+  <div class="card-strip" style="background:${p.color}"></div>
+  <span class="card-badge ${p.bType}">${p.badge}</span>
+  <div class="card-img">
+    <img src="${p.img}" alt="${p.model}" loading="lazy"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="img-fb" style="background:${p.color};display:none">
+      ${p.model.replace(/[^A-Z0-9]/g,'').slice(0,2)||p.model.slice(0,2).toUpperCase()}
+    </div>
+  </div>
+  <div class="card-info">
+    <div class="card-brand">${p.brand}</div>
+    <div class="card-name">${p.model}</div>
+    <div class="card-price">R$ ${p.price.toLocaleString('pt-BR')} <sub>aprox.</sub></div>
+    <div class="stars-row"><div class="stars">${stars(p.rating)}</div><span class="rating-val">${p.rating.toFixed(1)}</span></div>
+    <div class="card-specs">${rows}</div>
+  </div>
+  <div class="card-actions">
+    <a class="btn btn-bup" href="${p.links.bup}" target="_blank">🔍 Buscapé</a>
+    <a class="btn btn-ml"  href="${p.links.ml}"  target="_blank">🟡 Mercado Livre</a>
+    <a class="btn btn-loja"href="${p.links.loja}" target="_blank">${p.excl?'🏪 Samsung.com':'🏪 Oficial'}</a>
+  </div>
+</div>`;
+}
+
+function filtered(){
+  let list=D.filter(p=>{
+    if(activeBrands.size>0 && !activeBrands.has(p.brandKey)) return false;
+    if(![...activeFeats].every(f=>p.feats[f])) return false;
+    return true;
+  });
+  if(sort==='pa') list.sort((a,b)=>a.price-b.price);
+  if(sort==='pd') list.sort((a,b)=>b.price-a.price);
+  if(sort==='ra') list.sort((a,b)=>b.rating-a.rating);
+  return list;
+}
+
+function stStr(n){
+  return `<span style="color:#f59e0b">${'★'.repeat(n)}</span><span style="opacity:.16;color:#f59e0b">${'★'.repeat(5-n)}</span>`;
+}
+
+function buildTable(list){
+  const ROWS=[
+    ['Preço aprox.',p=>`<strong>R$ ${p.price.toLocaleString('pt-BR')}</strong>`],
+    ['Processador',p=>PROC[p.id]||'—'],
+    ['RAM',p=>RAM[p.id]||'—'],
+    ['Memória interna',p=>STOR[p.id]||'—'],
+    ['Câmera principal',p=>p.specs[0][2]],
+    ['Câmera frontal',p=>p.specs[1][2]],
+    ['Vídeo 4K',p=>p.feats['4k']?'<span class="t-ok">✓</span>':'<span class="t-bad">✗</span>'],
+    ['Bateria / Carga',p=>p.specs[2][2]],
+    ['NFC',_=>'<span class="t-ok">✓</span>'],
+    ['Slot microSD',p=>p.feats.sdcard?'<span class="t-ok">✓</span>':'<span class="t-bad">✗</span>'],
+    ['Resistência água',p=>p.specs[3][2]],
+    ['Peso',p=>p.specs[4][2]],
+    ['Biometria tela',p=>p.feats.bio?'<span class="t-pill t-green">✓ na tela</span>':'<span class="t-pill" style="background:#f1f5f9;color:#64748b">✗ lateral</span>'],
+    ['Suporte (OS)',p=>p.id==='s25fe'?'<span class="t-pill t-green">7 anos</span>':p.feats['4anos']?'<span class="t-pill t-green">4 anos</span>':'<span style="color:#94a3b8">2 anos</span>'],
+  ];
+  const SC=[['Custo-benefício','pr'],['Tela','te'],['Processador','ch'],['Câm. principal','cp'],['Câm. frontal','cf'],['Bateria','ba'],['Carregamento','ca'],['Resist. água','ag'],['Peso','pe'],['Biometria','bi'],['Atualizações','at']];
+  let h=`<thead><tr><th>Atributo</th>${list.map(p=>`<th>${p.brand}<br><strong>${p.model}</strong></th>`).join('')}</tr></thead><tbody>`;
+  ROWS.forEach(([l,fn])=>{ h+=`<tr><td>${l}</td>${list.map(p=>`<td>${fn(p)}</td>`).join('')}</tr>`; });
+  h+=`<tr><td colspan="${list.length+1}" style="padding:5px 9px;font-size:.62rem;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:#f8fafc">Notas por atributo (1–5★)</td></tr>`;
+  SC.forEach(([l,k])=>{ h+=`<tr class="score-row"><td>↳ ${l}</td>${list.map(p=>`<td>${stStr(p.sc[k])}</td>`).join('')}</tr>`; });
+  h+=`<tr class="avg-row"><td>⭐ Média geral</td>${list.map(p=>`<td><strong>${p.rating.toFixed(1)}</strong> ⭐</td>`).join('')}</tr></tbody>`;
+  document.getElementById('tbl').innerHTML=h;
+}
+
+function render(){
+  const list=filtered();
+  document.querySelectorAll('.card').forEach(c=>{
+    c.classList.toggle('hidden',!list.some(p=>p.id===c.dataset.id));
+    c.style.order=list.findIndex(p=>p.id===c.dataset.id);
+  });
+  document.getElementById('noResults').style.display=list.length?'none':'block';
+  const n=list.length;
+  document.getElementById('ctCount').textContent=n;
+  document.getElementById('hCount').textContent=n;
+  document.getElementById('clearBtn').classList.toggle('visible',anyActive());
+  buildTable(list.length?list:D);
+}
+
+function init(){
+  const grid=document.getElementById('grid');
+  D.forEach(p=>grid.insertAdjacentHTML('beforeend',card(p)));
+
+  // Brand chips
+  document.querySelectorAll('.brand-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const b=chip.dataset.brand;
+      if(activeBrands.has(b)){activeBrands.delete(b);chip.classList.remove('on');}
+      else{activeBrands.add(b);chip.classList.add('on');}
+      render();
+    });
+  });
+
+  // Feature filters
+  document.querySelectorAll('.filter-item').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const f=btn.dataset.feat;
+      if(activeFeats.has(f)){activeFeats.delete(f);btn.classList.remove('on');}
+      else{activeFeats.add(f);btn.classList.add('on');}
+      render();
+    });
+  });
+
+  document.getElementById('sortSel').addEventListener('change',e=>{sort=e.target.value;render();});
+
+  document.getElementById('clearBtn').addEventListener('click',()=>{
+    activeBrands.clear(); activeFeats.clear();
+    document.querySelectorAll('.brand-chip,.filter-item').forEach(el=>el.classList.remove('on'));
+    render();
+  });
+
+  render();
+}
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
 </body>
 </html>
