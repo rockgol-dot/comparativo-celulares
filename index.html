@@ -177,10 +177,10 @@ footer { text-align:center; font-size:.67rem; color:var(--muted); padding:22px; 
   <div class="sb-section">
     <div class="sb-title">Marca</div>
     <div class="brand-chips" id="brandChips">
-      <div class="brand-chip" data-brand="samsung">Samsung <span class="chip-count">4</span></div>
+      <div class="brand-chip" data-brand="samsung">Samsung <span class="chip-count">5</span></div>
       <div class="brand-chip" data-brand="motorola">Motorola <span class="chip-count">2</span></div>
       <div class="brand-chip" data-brand="xiaomi">Xiaomi/POCO <span class="chip-count">3</span></div>
-      <div class="brand-chip" data-brand="realme">Realme <span class="chip-count">2</span></div>
+      <div class="brand-chip" data-brand="realme">Realme <span class="chip-count">4</span></div>
     </div>
   </div>
 
@@ -201,7 +201,7 @@ footer { text-align:center; font-size:.67rem; color:var(--muted); padding:22px; 
     <div class="sb-title">Ordenar</div>
     <select class="sort-select" id="sortSel">
       <option value="">Padrão</option>
-      <option value="pa">Menor preço</option>
+      <option value="pa" selected>Menor preço</option>
       <option value="pd">Maior preço</option>
       <option value="ra">Maior nota</option>
     </select>
@@ -313,14 +313,38 @@ const D = [
     feats:{ ip68:true, bio:true, '4anos':true, '4k':true, charge65:false, ois:false, ram12:false, sdcard:false, stor256:false },
     specs:[['📷','Câmera','50MP + 12MP UW + 8MP 3x tele'],['🤳','Selfie','12 MP'],['🔋','Bateria','4.900 mAh / 45W'],['💧','Resistência','IP68'],['⚖️','Peso','190g'],['🔄','Suporte','7 anos ★★'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
     sc:{pr:3,te:4,ch:5,cp:4,cf:3,ba:2,ca:2,ag:3,pe:3,bi:4,at:5}
+  },
+  { id:'r14t',  brandKey:'realme',   brand:'Realme',       model:'Realme 14T 5G',        price:1499, rating:3.0,
+    color:'#f5a623', badge:'IP68 + IP69',        bType:'badge-blue', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/realme-14t-5g.jpg',
+    links:{ bup:'https://www.buscape.com.br/celular/celular-realme-14t-5g-256gb-8-gb', ml:'https://lista.mercadolivre.com.br/realme-14t-5g', loja:'https://www.realmestore.com.br/' },
+    feats:{ ip68:true, bio:false, '4anos':false, '4k':false, charge65:false, ois:false, ram12:false, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50 MP'],['🤳','Selfie','16 MP'],['🔋','Bateria','6.000 mAh / 45W'],['💧','Resistência','IP68 + IP69'],['⚖️','Peso','~196g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✗',false],['🎬','4K','✗',false]],
+    sc:{pr:4,te:3,ch:2,cp:3,cf:2,ba:5,ca:3,ag:5,pe:2,bi:2,at:2}
+  },
+  { id:'a57',   brandKey:'samsung',  brand:'Samsung',      model:'Galaxy A57 5G',        price:2200, rating:3.9,
+    color:'#1428a0', badge:'Mais fino ★ 6,9mm',  bType:'badge-green', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a57.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/samsung+galaxy+a57', ml:'https://lista.mercadolivre.com.br/samsung-galaxy-a57-5g', loja:'https://www.samsung.com/br/smartphones/galaxy-a/' },
+    feats:{ ip68:true, bio:true, '4anos':true, '4k':true, charge65:false, ois:true, ram12:false, sdcard:false, stor256:true },
+    specs:[['📷','Câmera','50 MP OIS'],['🤳','Selfie','12 MP'],['🔋','Bateria','5.000 mAh / 45W'],['💧','Resistência','IP68'],['⚖️','Peso','179g'],['🔄','Suporte','6 anos'],['👆','Bio. tela','✓',true],['🎬','4K','✓',true]],
+    sc:{pr:3,te:5,ch:4,cp:4,cf:3,ba:3,ca:2,ag:4,pe:5,bi:5,at:5}
+  },
+  { id:'r15t',  brandKey:'realme',   brand:'Realme',       model:'Realme 15T 5G',        price:2450, rating:3.5,
+    color:'#f5a623', badge:'7.000 mAh ★',        bType:'badge-gold', excl:false,
+    img:'https://fdn2.gsmarena.com/vv/bigpic/realme-15t-5g.jpg',
+    links:{ bup:'https://www.buscape.com.br/busca/realme+15t', ml:'https://lista.mercadolivre.com.br/realme-15t-5g', loja:'https://www.realmestore.com.br/' },
+    feats:{ ip68:true, bio:false, '4anos':false, '4k':false, charge65:false, ois:false, ram12:true, sdcard:true, stor256:true },
+    specs:[['📷','Câmera','50 MP'],['🤳','Selfie','50 MP ★'],['🔋','Bateria','7.000 mAh / 60W'],['💧','Resistência','IP68 + IP69 + IP66'],['⚖️','Peso','~208g'],['🔄','Suporte','2 anos'],['👆','Bio. tela','✗',false],['🎬','4K','✗',false]],
+    sc:{pr:3,te:4,ch:3,cp:3,cf:5,ba:5,ca:4,ag:5,pe:1,bi:2,at:2}
   }
 ];
 
-const PROC={a36:'SD 6 Gen 3',neo:'Dimensity 7300',poco:'SD 7s Gen 3',fusion:'Dimensity 7300',realme:'SD 6 Gen 4',m55:'SD 7 Gen 1',a56:'Exynos 1580',redmi:'D7300 Ultra',pocox8:'D8500 Ultra',rm14pp:'SD 7s Gen 3',s25fe:'Exynos 2400'};
-const RAM={a36:'8 GB',neo:'12 GB',poco:'8 GB',fusion:'8 GB',realme:'12 GB',m55:'8 GB',a56:'8 GB',redmi:'8 GB',pocox8:'12 GB',rm14pp:'12 GB',s25fe:'8 GB'};
-const STOR={a36:'256 GB',neo:'256 GB',poco:'256 GB',fusion:'256 GB',realme:'256 GB',m55:'128 GB',a56:'256 GB',redmi:'256 GB',pocox8:'256 GB',rm14pp:'256 GB',s25fe:'128 GB'};
+const PROC={a36:'SD 6 Gen 3',neo:'Dimensity 7300',poco:'SD 7s Gen 3',fusion:'Dimensity 7300',realme:'SD 6 Gen 4',m55:'SD 7 Gen 1',a56:'Exynos 1580',redmi:'D7300 Ultra',pocox8:'D8500 Ultra',rm14pp:'SD 7s Gen 3',s25fe:'Exynos 2400',r14t:'Dimensity 6300',a57:'Exynos 1680',r15t:'Dimensity 6400 Max'};
+const RAM={a36:'8 GB',neo:'12 GB',poco:'8 GB',fusion:'8 GB',realme:'12 GB',m55:'8 GB',a56:'8 GB',redmi:'8 GB',pocox8:'12 GB',rm14pp:'12 GB',s25fe:'8 GB',r14t:'8 GB',a57:'8 GB',r15t:'8 GB'};
+const STOR={a36:'256 GB',neo:'256 GB',poco:'256 GB',fusion:'256 GB',realme:'256 GB',m55:'128 GB',a56:'256 GB',redmi:'256 GB',pocox8:'256 GB',rm14pp:'256 GB',s25fe:'128 GB',r14t:'256 GB',a57:'256 GB',r15t:'256 GB'};
 
-let activeBrands=new Set(), activeFeats=new Set(), sort='';
+let activeBrands=new Set(), activeFeats=new Set(), sort='pa';
 
 function anyActive(){ return activeBrands.size>0||activeFeats.size>0; }
 
